@@ -1,11 +1,13 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.data.*;
-import static play.data.Form.*;
+import models.User;
+import play.data.Form;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
+import views.html.login;
 
-import views.html.*;
+import static play.data.Form.form;
 
 /*
 * Used for home page operations. Login/registration etc.
@@ -20,7 +22,7 @@ public class Application extends Controller {
     }
 
     public static Result login() {
-        return ok(login.render());
+        return ok(login.render(form(Login.class)));
     }
 
 
