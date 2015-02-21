@@ -7,6 +7,12 @@ import static play.data.Form.*;
 
 import views.html.*;
 
+/*
+* Used for home page operations. Login/registration etc.
+* Top menu buttons
+*
+*/
+
 public class Application extends Controller {
 
     public static Result index() {

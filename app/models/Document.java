@@ -1,11 +1,14 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
+import play.data.format.Formats;
+import play.db.ebean.Model;
 
-import play.db.ebean.*;
-import play.data.format.*;
-import play.data.validation.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Document extends Model{ 
@@ -18,7 +21,6 @@ public class Document extends Model{
 	public String name;
 
 	@NotNull
-	@Column(name = "public")
 	public boolean visibility;
 
 	@NotNull
