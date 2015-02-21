@@ -1,11 +1,12 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
+import org.hibernate.validator.constraints.Length;
+import play.db.ebean.Model;
 
-import play.db.ebean.*;
-import play.data.format.*;
-import play.data.validation.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User extends Model{
