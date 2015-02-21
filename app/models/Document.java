@@ -3,6 +3,8 @@ package models;
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
+import play.Logger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ import java.util.Date;
 
 @Entity
 public class Document extends Model{ 
+
+	private static final Logger.ALogger log = Logger.of(Document.class);
 
 	@Id
 	@NotNull

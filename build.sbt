@@ -11,7 +11,9 @@ libraryDependencies ++= Seq(
 		javaEbean,
 		cache,
 		javaWs,
-		"mysql" % "mysql-connector-java" % "5.1.33"
+		"mysql" % "mysql-connector-java" % "5.1.33",
+		"org.webjars" %% "webjars-play" % "2.3.0-2",
+  		"org.webjars" % "bootstrap" % "3.1.1-2"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  

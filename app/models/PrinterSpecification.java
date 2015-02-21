@@ -2,6 +2,8 @@ package models;
 
 import play.db.ebean.Model;
 
+import play.Logger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,6 +11,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class PrinterSpecification extends Model {
+
+    private static final Logger.ALogger log = Logger.of(PrinterSpecification.class);
+
     @Id
     @NotNull
     public Long id;

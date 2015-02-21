@@ -3,12 +3,19 @@ package models;
 import org.hibernate.validator.constraints.Length;
 import play.db.ebean.Model;
 
+import play.Logger;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Entity
 public class User extends Model{
+
+	private static final Logger.ALogger log = Logger.of(User.class);
 	
 	@Id
 	@NotNull
@@ -42,5 +49,26 @@ public class User extends Model{
             .eq("password", password)
             .findUnique();
     }
+
+    public static int count() {
+        return find.findRowCount();
+    }
+
+    public static User findById(Long id) {
+        return User.find.byId(id);
+    }
+
+    public static User findByName(String name) {
+        return User.find.where().eq("name", name).findUnique();
+    }
+
+    public static User findByEmail(String email) {
+        return User.find.where().eq("email", email).findUnique();
+    }
+
+    public static List<User> getUsersList() {
+    	return User.find.all();
+    }
+
 
 }
