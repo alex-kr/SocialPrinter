@@ -13,7 +13,6 @@ public class User extends Model{
 	
 	@Id
 	@NotNull
-	@NotNull
 	@OneToOne(mappedBy = "user")
 	public Long id;
 	
