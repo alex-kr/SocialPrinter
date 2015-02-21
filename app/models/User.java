@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Entity
 public class User extends Model{
 
@@ -42,5 +45,26 @@ public class User extends Model{
     public static User authenticate(String email, String password) {
         return new User();
     }
+
+    public static int count() {
+        return find.findRowCount();
+    }
+
+    public static User findById(Long id) {
+        return User.find.byId(id);
+    }
+
+    public static User findByName(String name) {
+        return User.find.where().eq("name", name).findUnique();
+    }
+
+    public static User findByEmail(String email) {
+        return User.find.where().eq("email", email).findUnique();
+    }
+
+    public static List<User> getUsersList() {
+    	return User.find.all();
+    }
+
 
 }
