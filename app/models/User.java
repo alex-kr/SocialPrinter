@@ -13,6 +13,7 @@ public class User extends Model{
 	
 	@Id
 	@NotNull
+	@OneToOne(mappedBy = "user")
 	public Long id;
 	
 	@Length(max=255)
@@ -25,10 +26,8 @@ public class User extends Model{
 	@NotNull
 	public int rating;
 
-	@Length(max=100)
 	@NotNull
-	@OneToOne()
-	public String login;
+	public String email;
 
 	public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
 
