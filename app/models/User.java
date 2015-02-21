@@ -3,6 +3,8 @@ package models;
 import org.hibernate.validator.constraints.Length;
 import play.db.ebean.Model;
 
+import play.Logger;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -10,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class User extends Model{
+
+	private static final Logger.ALogger log = Logger.of(User.class);
 	
 	@Id
 	@NotNull
