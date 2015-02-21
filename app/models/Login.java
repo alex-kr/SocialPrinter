@@ -21,8 +21,7 @@ public class Login extends Model{
 
 
 	public Login() {
-		
-	}
 
+	}
 
 }
