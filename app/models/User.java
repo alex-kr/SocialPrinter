@@ -5,7 +5,6 @@ import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,7 +12,6 @@ public class User extends Model{
 	
 	@Id
 	@NotNull
-	@OneToOne(mappedBy = "user")
 	public Long id;
 	
 	@Length(max=255)
@@ -29,6 +27,9 @@ public class User extends Model{
 	@NotNull
 	public String email;
 
+    @NotNull
+    public String password;
+
 	public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
 
 	public User() {
@@ -36,7 +37,10 @@ public class User extends Model{
 	}
 
     public static User authenticate(String email, String password) {
-        return new User();
+        return find.where()
+            .eq("email", email)
+            .eq("password", password)
+            .findUnique();
     }
 
 }
