@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+import java.util.List;
+
 @Entity
 public class Document extends Model{ 
 
@@ -35,8 +37,28 @@ public class Document extends Model{
 	@NotNull
 	public byte[] data;
 
+	public static Finder<Long, Document> find = new Finder<Long,Document>(Long.class, Document.class);
+
 	public Document() {
 
 	}
+
+	public static int count() {
+        return find.findRowCount();
+    }
+
+    public static Document findById(Long id) {
+        return Document.find.byId(id);
+    }
+
+    public static Document findByName(String name) {
+        return Document.find.where().eq("name", name).findUnique();
+    }
+
+    public static List<Document> getDocumentList() {
+    	return Document.find.all();
+    }
+
+
 
 }

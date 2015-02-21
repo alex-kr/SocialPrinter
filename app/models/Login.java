@@ -22,6 +22,8 @@ public class Login extends Model{
 	@NotNull
 	public String hash;
 
+	public static Finder<Long, History> find = new Finder<Long,History>(Long.class, History.class);
+
 
 	public Login() {
 

@@ -35,7 +35,7 @@ public class History extends Model {
     @Formats.DateTime(pattern="dd/MM/yyyy")
     public Date datePrint = new Date();
 
-    public static Finder<Long, History> find = new Finder<>(Long.class, History.class);
+    public static Finder<Long, History> find = new Finder<Long,History>(Long.class, History.class);
 
     public History() {
 
