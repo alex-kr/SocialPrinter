@@ -33,6 +33,10 @@ public class User extends Model{
 
 	public User() {
 
-	} 
+	}
+
+    public static User authenticate(String email, String password) {
+        return new User();
+    }
 
 }
