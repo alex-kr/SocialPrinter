@@ -6,6 +6,7 @@ import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class User extends Model{
 
     @NotNull
     public String password;
+
+    @OneToMany
+    public List<Printer> printers;
 
 	public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class);
 

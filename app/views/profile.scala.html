@@ -5,3 +5,13 @@ Balance: @user.balance <br>
 Rating: @user.rating <br>
 Email: @user.email <br>
 
+<a href="@routes.Application.addMoney(user.id)">Add money</a> <br>
+
+@for(p <- user.printers) {
+    PrinterId:
+    @if(p.printerSpecification != null) {
+        <a href="@routes.Application.specifications(p.printerSpecification.id)">@p.id</a> <br>
+    } else {
+        @p.id <br>
+    }
+}

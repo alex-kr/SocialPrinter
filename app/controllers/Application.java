@@ -36,7 +36,7 @@ public class Application extends Controller {
     	} else {
         	session().clear();
 //        	session("email", loginForm.get().email);
-            User user = User.findByEmail(session("email"));
+            User user = User.findByEmail(loginForm.get().email);
             session("userId", String.valueOf(user.id));
         	return redirect(routes.Application.printers());
     	}    	
@@ -105,5 +105,12 @@ public class Application extends Controller {
     public static Result specifications(Long printerSpecificationId) {
         PrinterSpecification printerSpecification = PrinterSpecification.find.byId(printerSpecificationId);
         return ok(specification.render(printerSpecification));
+    }
+
+    public static Result addMoney(Long userId) {
+        User user = User.findById(userId);
+        user.balance += 10;
+        user.update();
+        return ok(profile.render(user));
     }
 }
