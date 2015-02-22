@@ -1,17 +1,20 @@
 @(form: Form[Application.Registration])
 
 @main("Registration"){
-    <div style="text-align: center">
-        <br><br>
-        <h1>Registration page</h1>
-        @helper.form(routes.Application.registerUser) {
+    <header>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+    </header>
+
+    <div class="center-el">     
+        @helper.form(action = routes.Application.registerUser, 'class -> "form-signin") {
+        <h1>Registration</h1>
         @if(form.hasGlobalErrors) {
             <p class="error">@form.globalError.message</p>
         }
-        <p><input type="text" name="name" placeholder="Name" value="@form("name").value"></p>
-        <p><input type="email" name="email" placeholder="Email" value="@form("email").value"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p><button type="submit">Register</button></p>
+        <p><input type="text" class="form-control" name="name" placeholder="Name" value="@form("name").value"></p>
+        <p><input type="email" class="form-control" name="email" placeholder="Email" value="@form("email").value"></p>
+        <p><input type="password" class="form-control" name="password" placeholder="Password"></p>
+        <p><button lass="btn btn-lg btn-primary btn-block" type="submit">Register</button></p>
         }
     </div>
 }

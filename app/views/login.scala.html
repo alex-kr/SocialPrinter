@@ -1,19 +1,19 @@
 @(form: Form[Application.Login])
 
 @main("Login") {
-    <body>
-        <div style="text-align: center">
         <header>
             <a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
+            <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
         </header>
-		@helper.form(routes.Application.authenticate) {
+        <div class="center-el">
+		@helper.form( action = routes.Application.authenticate, 'class -> "form-signin") {
             <h1>Sign in</h1>
             @if(form.hasGlobalErrors) {
                 <p class="error">@form.globalError.message</p>
             }
-            <p><input type="email" name="email" placeholder="Email" value="@form("email").value"></p>
-            <p><input type="password" name="password" placeholder="Password"></p>
-            <p><button type="submit">Login</button></p>
+            <p><input type="email" class="form-control" name="email" placeholder="Email" value="@form("email").value"></p>
+            <p><input type="password" class="form-control" name="password" placeholder="Password"></p>
+            <p><button class="btn btn-lg btn-primary btn-block" type="submit">Login</button></p>
             <a href="@routes.Application.registration()">Registration</a>
 		}
         </div>
