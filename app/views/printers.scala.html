@@ -1,8 +1,37 @@
 @(p: List[models.Printer])
+
+
 @main("Printers") {
-    <div style="text-align: center">
-        <br><br>
-        <h1>Printers</h1>
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/profile.css")">
+       
+       
+
+
+
+        <div id="wrapper" class="active">
+      
+      <!-- Sidebar -->
+            <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#"> asdasd </a></li>
+      </ul>
+        <ul class="sidebar-nav" id="sidebar"> 
+          <li><a href="@routes.Application.profile(1L)">Info</a></li>   
+          <li><a>Account settings</a></li> 
+          <li><a href="@routes.Application.printers()">Printers</a></li>
+          <li><a>Printer Map</a></li>
+        </ul>
+      </div>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+        	
+        <br>
+        <h3>Printers</h3>
         @for(p0 <- p) {
             Printer name:
             @if(p0.printerSpecification != null) {
@@ -12,5 +41,14 @@
             }
             User name: @p0.user.name  <br>
         }
+  
+         
+        </div>
+      </div>
+      
     </div>
- }
+
+       
+
+    
+}
