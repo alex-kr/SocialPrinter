@@ -1,15 +1,50 @@
 @(user: User)
 @main("Profile") {
-    <div style="text-align: center">
-        <br><br>
-        <div class="alert alert-warning alert-dismissible" role="alert">
-            <div class="row-inline">
-         <div class=".col-xs-4"> <h1>Profile</h1> </div>
-         <div class=".col-xs-2"> <b>Name:</b> @user.name <br> </div>
-         <div class=".col-xs-2"> <b>Balance:</b> @user.balance <br> </div>
-         <div class=".col-xs-2"> <b>Rating:</b> @user.rating <br> </div>
-         <div class=".col-xs-2"> <b>Email:</b> @user.email <br> </div>
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/profile.css")">
+       
+       
+
+
+
+        <div id="wrapper" class="active">
+      
+      <!-- Sidebar -->
+            <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <ul id="sidebar_menu" class="sidebar-nav">
+           <li class="sidebar-brand"><a id="menu-toggle" href="#"> @user.name </a></li>
+      </ul>
+        <ul class="sidebar-nav" id="sidebar">     
+          <li><a>Balance</a></li>
+          <li><a>Rating</a></li>
+          <li><a>Email</a></li>
+        </ul>
+      </div>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <div class="row">
+
+            <ul>
+                <li> <b>Balance:</b> @user.balance  </li>
+                <li> <b>Rating:</b> @user.rating  </li>
+                <li> <b>Email:</b> @user.email  </li>
+            </ul>
+            </div>
+
         </div>
+        </div>
+      </div>
+      
+    </div>
+
+       
+
+     
 
         <a href="@routes.Application.addMoney(user.id)">Add money</a> <br>
 
@@ -25,5 +60,5 @@
 
         <a href="@routes.Application.showUserPrinters">Show available printers</a>
 
-    </div>
+    
 }

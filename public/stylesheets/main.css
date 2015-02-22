@@ -1,5 +1,5 @@
 .bodydiv {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .section-tout {
@@ -9,10 +9,7 @@
 }
 
 .logo-jumbo {
-	display: table;
-	position: static;
 	width: 100%;
-	min-height: 800;
 	text-align: center;
 	margin: 30;
 }
