@@ -1,16 +1,13 @@
 package models;
 
 import org.hibernate.validator.constraints.Length;
-import play.db.ebean.Model;
-
 import play.Logger;
+import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-
 import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 public class User extends Model{
@@ -68,6 +65,10 @@ public class User extends Model{
 
     public static List<User> getUsersList() {
     	return User.find.all();
+    }
+
+    public static List<Printer> getUserPrinters() {
+       return null;// TODO:
     }
 
 

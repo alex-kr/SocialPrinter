@@ -35,7 +35,8 @@ public class Application extends Controller {
     	} else {
         	session().clear();
         	session("email", loginForm.get().email);
-        	return redirect(routes.Application.profile());
+            User user = User.findByEmail(session("email"));
+        	return redirect(routes.Application.profile(user.id));
     	}    	
     }
 
@@ -43,8 +44,9 @@ public class Application extends Controller {
         return ok(registration.render());
     }
 
-    public static Result profile() {
-        return ok(profile.render());
+    public static Result profile(Long userId) {
+        User user = User.find.byId(userId);
+        return ok(profile.render(user));
     }
 
     public static class Login {
