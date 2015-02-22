@@ -74,6 +74,10 @@ public class Application extends Controller {
         return ok(profile.render(user));
     }
 
+     public static Result printermap() {
+        return ok(placemark.render());
+    }
+
     public static class Login {
         public String email;
         public String password;

@@ -1,0 +1,77 @@
+
+        
+
+
+       
+        
+        <style>
+            html, body, #map {
+                width: 100%; height: 100%; padding: 0; margin: 0;
+            }
+        </style>
+
+        <body>
+            <div id="map"></div>
+        </body>
+
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script  language="JavaScript" type="text/javascript"> 
+            ymaps.ready(init);
+
+function init () {
+  var myMap = new ymaps.Map("map", {
+    center: [50.4505, 30.523],
+    zoom: 10
+  });
+    
+  var onlinePrinters = new ymaps.GeoObjectCollection();
+  var offlinePrinters = new ymaps.GeoObjectCollection();
+  
+  var printers = [
+    {id : 100, coords : [50.3505, 30.423], name : "Andrew's printer", online : true /*, other fields */},
+    {id : 101, coords : [50.3505, 30.623], name : "Artem's printer", online : true /*, other fields */},
+    {id : 107, coords : [50.5505, 30.463], name : "Sasha's printer", online : false /*, other fields */},
+    {id : 108, coords : [50.3505, 30.693], name : "Artem's printer", online : true /*, other fields */},
+    {id : 106, coords : [50.5505, 30.413], name : "Sasha's printer", online : false /*, other fields */},
+    {id : 110, coords : [50.3505, 30.693], name : "Katy's printer", online : true /*, other fields */},
+    {id : 111, coords : [50.5505, 30.413], name : "Vova's printer", online : false /*, other fields */},
+    {id : 103, coords : [50.5505, 30.823], name : "Vitya's printer", online : false /*, other fields */}
+  ];
+  
+  for (var printer of printers) {
+    if (printer.id % 2 == 0) {
+      myPlacemark = new ymaps.Placemark(printer.coords, {
+        balloonContent: '<b>' + printer.name +'</b><br><a href="/specifications/1/1">Click to print something!</a>',
+        hintContent: (printer.online ? 'ONline' : 'OFFline') + ' printer mark with balloon'
+      }, {
+        preset: 'islands#icon',
+        iconColor: printer.online ? 'blue' : 'red'
+      });
+    } else {
+      myPlacemark = new ymaps.Placemark(printer.coords, {
+        iconContent: printer.name,
+        hintContent: (printer.online ? 'ONline' : 'OFFline') + ' printer mark withOUT balloon'
+      }, {
+        preset: printer.online ? 'islands#blueStretchyIcon' : 'islands#redStretchyIcon',
+        //iconColor: '#0095b6'
+      });
+      myPlacemark.events.add('click', function() {
+        document.location = "http://www.i.ua";
+      });
+    }
+    
+    if (printer.online) {
+      onlinePrinters.add(myPlacemark);
+    }else{
+      offlinePrinters.add(myPlacemark);
+    }
+  }
+  myMap.geoObjects.add(onlinePrinters);
+  myMap.geoObjects.add(offlinePrinters);
+  }
+
+
+        </script>
+
+
+

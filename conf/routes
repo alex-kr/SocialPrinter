@@ -17,6 +17,7 @@ GET     /registration           controllers.Application.registration()
 POST    /registerUser           controllers.Application.registerUser()
 GET     /profile/:userId        controllers.Application.profile(userId: Long)
 GET     /printers               controllers.Application.printers()
+GET     /printermap              controllers.Application.printermap()
 GET     /specifications/:pId/:spId   controllers.Application.specifications(pId: Long, spId: Long)
 GET     /addMoney/:userId       controllers.Application.addMoney(userId: Long)
 GET     /showUserPrinters       controllers.Application.showUserPrinters
