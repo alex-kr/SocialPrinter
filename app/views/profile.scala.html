@@ -2,11 +2,14 @@
 @main("Profile") {
     <div style="text-align: center">
         <br><br>
-        <h1>Profile page</h1>
-        Name: @user.name <br>
-        Balance: @user.balance <br>
-        Rating: @user.rating <br>
-        Email: @user.email <br>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <div class="row-inline">
+         <div class=".col-xs-4"> <h1>Profile</h1> </div>
+         <div class=".col-xs-2"> <b>Name:</b> @user.name <br> </div>
+         <div class=".col-xs-2"> <b>Balance:</b> @user.balance <br> </div>
+         <div class=".col-xs-2"> <b>Rating:</b> @user.rating <br> </div>
+         <div class=".col-xs-2"> <b>Email:</b> @user.email <br> </div>
+        </div>
 
         <a href="@routes.Application.addMoney(user.id)">Add money</a> <br>
 
