@@ -3,12 +3,18 @@
     <div style="text-align: center">
         <br><br>
 
-        id: @specification.id <br>
-        color: @specification.color <br>
+        <h1>Printer specification</h1>
+        @*id: @specification.id <br>*@
+        Print in color: @specification.color <br>
+        Print photos: @specification.photo <br>
+        Min size: @specification.minLength x @specification.minWidth <br>
+        Max size: @specification.maxLength x @specification.maxWidth <br><br>
+
+        <h2>Select file</h2>
 
         <form action='@routes.Application.loadFile(printer.id)' method='POST' enctype='multipart/form-data'>
-            <input type='file' name='userFile'><br>
-            <input type='submit' name='upload_btn' value='upload'>
+            <input type='file' name='userFile' style="margin-left: auto;margin-right: auto;"><br>
+            <input type='submit' name='upload_btn' value='Print'>
         </form>
     </div>
 }
