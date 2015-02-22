@@ -1,4 +1,6 @@
 @(form: Form[Application.Registration])
+
+@main("Registration"){
 <h1>Registration page</h1>
     @helper.form(routes.Application.registerUser) {
     @if(form.hasGlobalErrors) {
@@ -9,3 +11,5 @@
     <p><input type="password" name="password" placeholder="Password"></p>
     <p><button type="submit">Register</button></p>
     }
+
+}

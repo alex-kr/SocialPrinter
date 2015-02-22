@@ -7,6 +7,7 @@
         <title>@title</title>
 
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     </head>
     <body>
 
@@ -29,9 +30,9 @@
     	</div>
 
 
-
-        @content
-
+    	<div class="bodydiv">
+        	@content
+        </div>
         <script src="http:/code.jquery.com/jquery-1.7.2.min.js"></script>
         <!-- Optional: Incorporate the Bootstrap JavaScript plugins -->
 
