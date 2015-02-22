@@ -4,9 +4,7 @@ import play.db.ebean.Model;
 
 import play.Logger;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,6 +14,7 @@ public class PrinterSpecification extends Model {
 
     @Id
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     public boolean color;

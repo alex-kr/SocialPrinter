@@ -5,10 +5,7 @@ import play.db.ebean.Model;
 
 import play.Logger;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -19,6 +16,7 @@ public class History extends Model {
 
     @Id
     @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
     @ManyToOne

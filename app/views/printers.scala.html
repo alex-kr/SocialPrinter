@@ -4,13 +4,13 @@
         <br><br>
         <h1>Printers</h1>
         @for(p0 <- p) {
-            id:
+            Printer name:
             @if(p0.printerSpecification != null) {
-                <a href="@routes.Application.specifications(p0.printerSpecification.id)">@p0.id</a>
+                <a href="@routes.Application.specifications(p0.id, p0.printerSpecification.id)">@p0.name</a>
             } else {
-                @p0.id
+                @p0.name
             }
-            user.id: <p>@p0.user.id</p>  <br>
+            User name: @p0.user.name  <br>
         }
     </div>
  }

@@ -5,10 +5,7 @@ import play.db.ebean.Model;
 
 import play.Logger;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -21,21 +18,27 @@ public class Document extends Model{
 
 	@Id
 	@NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 
 	@NotNull
 	public String name;
 
 	@NotNull
+    @Column(name = "public")
 	public boolean visibility;
 
 	@NotNull
 	@Formats.DateTime(pattern="dd/MM/yyyy")
-	public java.util.Date date_loaded = new Date(); 
+	public java.util.Date date_loaded = new Date();
+
+    @ManyToOne
+    public User user;
 
 	@Lob
-	@NotNull
 	public byte[] data;
+
+    public String path;
 
 	public static Finder<Long, Document> find = new Finder<Long,Document>(Long.class, Document.class);
 

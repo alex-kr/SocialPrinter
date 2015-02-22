@@ -1,14 +1,18 @@
 package controllers;
 
-import models.Printer;
-import models.PrinterSpecification;
-import models.User;
+import com.fasterxml.jackson.databind.JsonNode;
+import models.*;
 import play.data.Form;
+import play.mvc.BodyParser;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.*;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -103,9 +107,10 @@ public class Application extends Controller {
         return ok(printers.render(printer));
     }
 
-    public static Result specifications(Long printerSpecificationId) {
+    public static Result specifications(Long printerId, Long printerSpecificationId) {
         PrinterSpecification printerSpecification = PrinterSpecification.find.byId(printerSpecificationId);
-        return ok(specification.render(printerSpecification));
+        Printer printer = Printer.find.byId(printerId);
+        return ok(specification.render(printer, printerSpecification));
     }
 
     public static Result addMoney(Long userId) {
@@ -130,5 +135,77 @@ public class Application extends Controller {
         printer.user = User.findById(userId);
         printer.save();
         return ok(profile.render(user));
+    }
+
+    public static Result loadFile(Long printerId) {
+        if (session("userId") != null) {
+            Http.MultipartFormData body = request().body().asMultipartFormData();
+            Http.MultipartFormData.FilePart userFile = body.getFile("userFile");
+            if (userFile != null) {
+                String fileName = userFile.getFilename();
+                File file = userFile.getFile();
+                /// Save
+                Document doc = new Document();
+                doc.date_loaded = new Date();
+                doc.name = "eXample";
+                doc.visibility = true;
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>");
+                System.out.println(session("userId"));
+                doc.user = User.findById(Long.parseLong(session("userId")));
+                System.out.println("User name: " + doc.user.name);
+//                System.out.println("user: " + doc.user.name);
+//                System.out.println("path: " + );
+                Path path = Paths.get(fileName);
+//                doc.data = null;
+//                try {
+////                    doc.data = Files.readAllBytes(path);
+//                    FileInputStream fis = new FileInputStream(file);
+//
+//                    List<Byte> list = new ArrayList<>();
+//                    int a;
+//                    do {
+//                        a = fis.read();
+//                        if (a > 0 ) {
+//                            list.add((byte)a);
+//                        }
+//                    } while (a > 0);
+//                    doc.data = new byte[list.size()];
+//                    for (int i = 0; i < list.size(); i++) {
+//                        doc.data[i] = list.get(i);
+//                    }
+//                    doc.save();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                ///
+                File newFile = new File(play.Play.application().path().toString() + "//public//uploads//" + "_" + fileName);
+                file.renameTo(newFile); //here you are moving photo to new directory
+//                System.out.println(newFile.getPath()); //this path you can store in database
+                doc.path = newFile.getPath();
+                doc.save();
+
+                History history = new History();
+                history.datePrint = new Date();
+                history.printer = Printer.find.byId(printerId);
+                history.user = User.findById(Long.parseLong(session("userId")));
+                history.document = doc;
+                history.save();
+                Driver.documentSend(doc);
+            }
+            return ok();
+        } else {
+            return ok(login.render(form(Login.class)));
+        }
+    }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public static Result documentReceived() {
+        JsonNode json = request().body().asJson();
+        String name = json.findPath("key1").textValue();
+        if(name == null) {
+            return badRequest("Missing parameter [name]");
+        } else {
+            return ok("IT'S OKAY!!!!!!!!!!!!1");
+        }
     }
 }

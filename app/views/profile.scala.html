@@ -51,7 +51,7 @@
         @for(p <- user.printers) {
             PrinterId:
             @if(p.printerSpecification != null) {
-                <a href="@routes.Application.specifications(p.printerSpecification.id)">@p.id</a>
+                <a href="@routes.Application.specifications(p.id, p.printerSpecification.id)">@p.id</a>
             } else {
                 @p.id
             }
