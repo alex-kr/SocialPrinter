@@ -189,7 +189,7 @@ public class Application extends Controller {
                 history.printer = Printer.find.byId(printerId);
                 history.user = User.findById(Long.parseLong(session("userId")));
                 history.document = doc;
-                history.save();
+//                history.save();
                 Driver.documentSend(doc);
             }
             return ok();
