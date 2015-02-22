@@ -192,7 +192,7 @@ public class Application extends Controller {
 //                history.save();
                 Driver.documentSend(doc);
             }
-            return ok();
+            return ok(sentToPrinting.render());
         } else {
             return ok(login.render(form(Login.class)));
         }
