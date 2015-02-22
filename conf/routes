@@ -14,6 +14,7 @@ GET  	/assets/*file        		  controllers.Assets.at(path="/public",file)
 GET     /login                  controllers.Application.login()
 POST    /login                  controllers.Application.authenticate()
 GET     /registration           controllers.Application.registration()
+POST    /registerUser           controllers.Application.registerUser()
 GET     /profile/:userId        controllers.Application.profile(userId: Long)
 
 

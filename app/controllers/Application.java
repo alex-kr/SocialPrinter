@@ -41,7 +41,25 @@ public class Application extends Controller {
     }
 
     public static Result registration() {
-        return ok(registration.render());
+        return ok(registration.render(form(Registration.class)));
+    }
+
+    public static Result registerUser() {
+        Form<Registration> regForm = form(Registration.class).bindFromRequest();
+        if (regForm.hasErrors()) {
+            return badRequest(registration.render(regForm));
+        } else {
+            session().clear();
+            session("email", regForm.get().email);
+            User user = new User();
+            user.balance = 0;
+            user.rating = 0;
+            user.email = regForm.get().email;
+            user.name = regForm.get().name;
+            user.password = regForm.get().password;
+            user.save();
+            return redirect(routes.Application.profile(user.id));
+        }
     }
 
     public static Result profile(Long userId) {
@@ -56,6 +74,22 @@ public class Application extends Controller {
         public String validate() {
             if (User.authenticate(email, password) == null) {
                 return "Invalid user or password";
+            }
+            return null;
+        }
+    }
+
+    public static class Registration {
+        public String name;
+        public String email;
+        public String password;
+
+        public String validate() {
+            if (name.equals("") || name == null) {
+                return "Empty user";
+            }
+            if (User.findByEmail(email) != null) {
+                return "User already exist";
             }
             return null;
         }
