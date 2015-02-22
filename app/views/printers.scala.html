@@ -1,5 +1,7 @@
 @(p: List[models.Printer])
 @main("Printers") {
+    <div style="text-align: center">
+        <br><br>
     @for(p0 <- p) {
         id:
         @if(p0.printerSpecification != null) {
@@ -9,4 +11,5 @@
         }
         user.id: <p>@p0.user.id</p>  <br>
     }
+    </div>
  }
