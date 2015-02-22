@@ -1,0 +1,13 @@
+@(printers: List[String])
+@main("Your printers") {
+    <div style="text-align: center">
+        <br><br>
+        <h1>Your Printers</h1>
+        @for(p <- printers) {
+            Printer name:
+            @*<a href="@routes.Application.specifications(Driver.getSpecificationByName(p).id)">@p</a>*@
+            @p
+            <a href="@routes.Application.addPrinter(p)">Add printer</a><br>
+            }
+    </div>
+}

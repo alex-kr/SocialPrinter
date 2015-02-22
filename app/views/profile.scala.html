@@ -13,13 +13,14 @@
         @for(p <- user.printers) {
             PrinterId:
             @if(p.printerSpecification != null) {
-                <a href="@routes.Application.specifications(p.printerSpecification.id)">@p.id</a> <br>
+                <a href="@routes.Application.specifications(p.printerSpecification.id)">@p.id</a>
             } else {
-                @p.id <br>
+                @p.id
             }
+            , @p.name <br>
         }
 
-        @*<a href="@routes.Application.showUserPrinters">Show available printers</a>*@
+        <a href="@routes.Application.showUserPrinters">Show available printers</a>
 
     </div>
 }
