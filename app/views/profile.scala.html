@@ -15,9 +15,10 @@
       <ul id="sidebar_menu" class="sidebar-nav">
            <li class="sidebar-brand"><a id="menu-toggle" href="#"> @user.name </a></li>
       </ul>
-        <ul class="sidebar-nav" id="sidebar">     
-          <li><a>Balance</a></li>
-          <li><a>Rating</a></li>
+        <ul class="sidebar-nav" id="sidebar"> 
+          <li><a href="@routes.Application.profile(user.id)">Info</a></li>    
+          <li><a>Printers</a></li>
+          <li><a>Printer Map</a></li>
           <li><a>Email</a></li>
         </ul>
       </div>
@@ -33,9 +34,10 @@
                 <li> <b>Balance:</b> @user.balance  </li>
                 <li> <b>Rating:</b> @user.rating  </li>
                 <li> <b>Email:</b> @user.email  </li>
+                
             </ul>
             </div>
-
+            <a href="@routes.Application.addMoney(user.id)">Replenish the balance</a>
         </div>
         </div>
       </div>
