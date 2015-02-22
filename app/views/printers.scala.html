@@ -28,20 +28,34 @@
       <!-- Page content -->
       <div id="page-content-wrapper">
         <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
+        <div class="page-content inset" style="margin-left:20px;margin-right:20px;">
         	
         <br>
         <h3>Printers</h3>
-        @for(p0 <- p) {
-            Printer name:
-            @if(p0.printerSpecification != null) {
-                <a href="@routes.Application.specifications(p0.id, p0.printerSpecification.id)">@p0.name</a>
-            } else {
-                @p0.name
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Printer name</th>
+                    <th>User name</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(p0 <- p) {
+                @*Printer name:*@
+                <tr>
+                    <td>
+                @if(p0.printerSpecification != null) {
+                    <a href="@routes.Application.specifications(p0.id, p0.printerSpecification.id)">@p0.name</a>
+                } else {
+                    @p0.name
+                }
+                    </td>
+                @*User name: *@
+                    <td>@p0.user.name</td>
+                </tr>
             }
-            User name: @p0.user.name  <br>
-        }
-  
+            </tdbody>
+        </table>
          
         </div>
       </div>
