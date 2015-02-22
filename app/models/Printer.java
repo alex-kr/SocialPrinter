@@ -21,6 +21,8 @@ public class Printer extends Model {
 
     public String location;
 
+    public String name;
+
     @Column(name = "pages_available")
     public int pagesAvailable;
 
@@ -39,5 +41,9 @@ public class Printer extends Model {
 
     public static List<Printer> getAll() {
         return find.all();
+    }
+
+    public static List<Printer> getUserPrinters(Long userId) {
+        return find.where().eq("user.id", userId).findList();
     }
 }

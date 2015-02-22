@@ -19,5 +19,5 @@ GET     /profile/:userId        controllers.Application.profile(userId: Long)
 GET     /printers               controllers.Application.printers()
 GET     /specifications/:spId   controllers.Application.specifications(spId: Long)
 GET     /addMoney/:userId       controllers.Application.addMoney(userId: Long)
-
+#GET     /showUserPrinters       controllers.Application.showUserPrinters
 

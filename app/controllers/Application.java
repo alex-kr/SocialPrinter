@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -113,4 +114,14 @@ public class Application extends Controller {
         user.update();
         return ok(profile.render(user));
     }
+//
+//    public static Result showUserPrinters() {
+//        List<String> printerNames = Driver.definePrintersNames();
+//        List<Printer> printerList = new ArrayList<>();
+//        for(int i = 0; i < Printer.getAll().size(); i++) {
+//            if ()
+//        }
+//
+//
+//    }
 }
