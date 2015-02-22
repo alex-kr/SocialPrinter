@@ -114,14 +114,21 @@ public class Application extends Controller {
         user.update();
         return ok(profile.render(user));
     }
-//
-//    public static Result showUserPrinters() {
-//        List<String> printerNames = Driver.definePrintersNames();
-//        List<Printer> printerList = new ArrayList<>();
-//        for(int i = 0; i < Printer.getAll().size(); i++) {
-//            if ()
-//        }
-//
-//
-//    }
+
+    public static Result showUserPrinters() {
+        List<String> printerNames = Driver.definePrintersNames();
+        return ok(showUserPrinters.render(printerNames));
+    }
+
+    public static Result addPrinter(String p) {
+        Long userId = Long.parseLong(session("userId"));
+        User user = User.findById(userId);
+        Printer printer = new Printer();
+        printer.name = p;
+        printer.location = "Paris";
+        printer.printerSpecification = Driver.getSpecificationByName(p);
+        printer.user = User.findById(userId);
+        printer.save();
+        return ok(profile.render(user));
+    }
 }
