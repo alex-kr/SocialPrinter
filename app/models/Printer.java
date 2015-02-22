@@ -1,14 +1,14 @@
 package models;
 
-import play.db.ebean.Model;
-
 import play.Logger;
+import play.db.ebean.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Printer extends Model {
@@ -35,5 +35,9 @@ public class Printer extends Model {
 
     public Printer() {
 
+    }
+
+    public static List<Printer> getAll() {
+        return find.all();
     }
 }

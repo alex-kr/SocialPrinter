@@ -52,4 +52,6 @@ public class PrinterSpecification extends Model {
     @Column(name = "max_width_photo")
     public int maxWidthPhoto;
 
+    public static Finder<Long, PrinterSpecification> find = new Finder<>(Long.class, PrinterSpecification.class);
+
 }

@@ -1,13 +1,14 @@
 package controllers;
 
+import models.Printer;
+import models.PrinterSpecification;
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.index;
-import views.html.login;
-import views.html.profile;
-import views.html.registration;
+import views.html.*;
+
+import java.util.List;
 
 import static play.data.Form.form;
 
@@ -34,9 +35,10 @@ public class Application extends Controller {
         	return badRequest(login.render(loginForm));
     	} else {
         	session().clear();
-        	session("email", loginForm.get().email);
+//        	session("email", loginForm.get().email);
             User user = User.findByEmail(session("email"));
-        	return redirect(routes.Application.profile(user.id));
+            session("userId", String.valueOf(user.id));
+        	return redirect(routes.Application.printers());
     	}    	
     }
 
@@ -93,5 +95,15 @@ public class Application extends Controller {
             }
             return null;
         }
+    }
+
+    public static Result printers() {
+        List<Printer> printer = Printer.getAll();
+        return ok(printers.render(printer));
+    }
+
+    public static Result specifications(Long printerSpecificationId) {
+        PrinterSpecification printerSpecification = PrinterSpecification.find.byId(printerSpecificationId);
+        return ok(specification.render(printerSpecification));
     }
 }

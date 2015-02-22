@@ -1,0 +1,10 @@
+@(p: List[models.Printer])
+    @for(p0 <- p) {
+        id:
+        @if(p0.printerSpecification != null) {
+            <a href="@routes.Application.specifications(p0.printerSpecification.id)">@p0.id</a>
+        } else {
+            @p0.id
+        }
+        user.id: <p>@p0.user.id</p>  <br>
+    }

@@ -16,5 +16,7 @@ POST    /login                  controllers.Application.authenticate()
 GET     /registration           controllers.Application.registration()
 POST    /registerUser           controllers.Application.registerUser()
 GET     /profile/:userId        controllers.Application.profile(userId: Long)
+GET     /printers               controllers.Application.printers()
+GET     /specifications/:spId   controllers.Application.specifications(spId: Long)
 
 
